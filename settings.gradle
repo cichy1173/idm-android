@@ -1,0 +1,2 @@
+rootProject.name = "Internet Download Manager"
+include ':app'

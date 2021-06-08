@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Internet Download Manager</string>
+    <string name="address">Address</string>
+    <string name="get_data">Get data!</string>
+    <string name="size">Size:</string>
+    <string name="type">Type:</string>
+    <string name="_0">0</string>
+    <string name="download">Download!</string>
+    <string name="downloaded">Downloaded:</string>
+    <string name="link_fixed">https://rootblog.pl/wp-content/uploads/2021/06/Zrzut-ekranu-z-2021-06-07-13-39-55-1160x680.png</string>
+</resources>
