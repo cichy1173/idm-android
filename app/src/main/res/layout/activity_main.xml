@@ -107,39 +107,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fileType" />
 
-    <TextView
-        android:id="@+id/downloaded_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="@string/downloaded"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/download_button" />
-
-    <TextView
-        android:id="@+id/howManyDownloaded"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="@string/_0"
-        android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/downloaded_textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/downloaded_textView"
-        app:layout_constraintTop_toBottomOf="@+id/download_button" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:padding="16sp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/downloaded_textView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
