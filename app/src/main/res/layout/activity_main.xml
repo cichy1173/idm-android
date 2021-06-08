@@ -107,6 +107,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fileType" />
 
+<<<<<<< HEAD
     <TextView
         android:id="@+id/downloaded_textView"
         android:layout_width="wrap_content"
@@ -142,4 +143,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/downloaded_textView" />
+=======
+>>>>>>> develop
 </androidx.constraintlayout.widget.ConstraintLayout>
