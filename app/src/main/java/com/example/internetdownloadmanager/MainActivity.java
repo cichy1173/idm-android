@@ -7,11 +7,8 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.DownloadManager;
-<<<<<<< HEAD
-=======
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
->>>>>>> develop
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -22,22 +19,13 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
-<<<<<<< HEAD
-=======
 import android.webkit.MimeTypeMap;
->>>>>>> develop
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-<<<<<<< HEAD
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-=======
 import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -47,7 +35,6 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLConnection;
->>>>>>> develop
 import java.util.Objects;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -55,13 +42,10 @@ import javax.net.ssl.HttpsURLConnection;
 public class MainActivity extends AppCompatActivity {
 
     Button downloadButton, getDataButton;
-    TextView addressTextView, fileSizeTextView, fileTypeTextView, downloadedTextView;
+    TextView fileSizeTextView, fileTypeTextView;
     EditText addressEditText;
-    ProgressBar progressBar;
-<<<<<<< HEAD
-=======
+
     ProgressDialog progressDialog;
->>>>>>> develop
     private static final int PERMISSION_STORAGE_CODE = 69;
 
 
@@ -81,18 +65,11 @@ public class MainActivity extends AppCompatActivity {
 
         getDataButton = findViewById(R.id.getData_button);
 
-<<<<<<< HEAD
-        progressBar = findViewById(R.id.progressBar);
-=======
-      //  progressBar = findViewById(R.id.progressBar);
->>>>>>> develop
+
 
         getDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
-                getDownloadInfo();
-=======
                 if (addressEditText.getText().toString().isEmpty()) {
                     addressEditText.setError("Empty!");
 
@@ -101,57 +78,38 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
->>>>>>> develop
             }
         });
 
 
-     downloadButton.setOnClickListener(new View.OnClickListener() {
+        downloadButton.setOnClickListener(new View.OnClickListener() {
 
 
-         @Override
-         public void onClick(View v) {
-            // ContextCompat.startForegroundService(MainActivity.this, serviceIntent);
+            @Override
+            public void onClick(View v) {
+                // ContextCompat.startForegroundService(MainActivity.this, serviceIntent);
 
-             if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
-                     PackageManager.PERMISSION_DENIED) {
+                if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
+                        PackageManager.PERMISSION_DENIED) {
 
-                 String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-                 requestPermissions(permissions, PERMISSION_STORAGE_CODE);
-             }
+                    String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                    requestPermissions(permissions, PERMISSION_STORAGE_CODE);
+                }
 
-             else {
-<<<<<<< HEAD
-                 startDownloading();
-=======
+                else {
 
-                 if (addressEditText.getText().toString().isEmpty()) {
-                     addressEditText.setError("Empty!");
-                 } else {
-                     startDownloading();
+                    if (addressEditText.getText().toString().isEmpty()) {
+                        addressEditText.setError("Empty!");
+                    } else {
+                        startDownloading();
 
-                     new DownloadFile().execute(addressEditText.getText().toString());
-                 }
+                        new DownloadFile().execute(addressEditText.getText().toString());
+                    }
 
->>>>>>> develop
-             }
-         }
-     });
+                }
+            }
+        });
 
-<<<<<<< HEAD
-
-
-
-
-    }
-
-    public void startDownloading() {
-
-        String url = addressEditText.getText().toString().trim();
-        String fileType = fileTypeTextView.getText().toString().trim();
-
-
-=======
     }
 
     private class DownloadFile extends AsyncTask<String, Integer, String> {
@@ -226,27 +184,17 @@ public class MainActivity extends AppCompatActivity {
 
         String url = addressEditText.getText().toString().trim();
         Uri uri = Uri.parse(url);
->>>>>>> develop
 
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
         request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI |
                 DownloadManager.Request.NETWORK_MOBILE);
 
-<<<<<<< HEAD
-        request.setTitle("Download");
-        request.setDescription("Downloading file...");
-        request.setAllowedOverMetered(true);
-       // request.allowScanningByMediaScanner();
-        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "" + System.currentTimeMillis());
-=======
         request.setTitle(url);
         request.setDescription("Downloading...");
         request.setAllowedOverMetered(true);
-       // request.allowScanningByMediaScanner();
+        // request.allowScanningByMediaScanner();
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, System.currentTimeMillis() + ".png");
->>>>>>> develop
 
         DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
         manager.enqueue(request);
@@ -337,5 +285,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-}
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putString("size", fileSizeTextView.getText().toString());
+        outState.putString("type", fileTypeTextView.getText().toString());
+        outState.putString("link", addressEditText.getText().toString());
 
+        super.onSaveInstanceState(outState);
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        fileSizeTextView.setText(savedInstanceState.getString("size"));
+        fileTypeTextView.setText(savedInstanceState.getString("type"));
+        addressEditText.setText(savedInstanceState.getString("link"));
+    }
+}
